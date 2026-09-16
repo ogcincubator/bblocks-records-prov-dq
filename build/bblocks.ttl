@@ -1,69 +1,125 @@
 @prefix bblocks: <https://www.opengis.net/def/bblocks/> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ns1: <http://www.w3.org/ns/oa#> .
+@prefix ns2: <http://www.iana.org/assignments/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prof: <http://www.w3.org/ns/dx/prof/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix role: <http://www.w3.org/ns/dx/prof/role/> .
 @prefix schema: <https://schema.org/> .
+@prefix shacl: <https://www.w3.org/TR/shacl/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://ogcincubator.github.io/ogc.bbr.template.records-prov> a skos:Concept,
+<bblocks://ogc.bbr.template.records-prov> a skos:Concept,
         dcat:Dataset,
+        bblocks:BBlock,
         bblocks:Schema ;
     rdfs:label "Record with Provenance" ;
-    dct:abstract "AOGC API Record item with a provenance trace supporting the PROV-O model and DAG (directed acyclic graph) through both object nesting and references" ;
+    dct:abstract "AOGC API Record item with a provenance trace supporting the PROV-O model and DAG (directed acyclic graph) through both object nesting and references"^^<https://www.w3.org/ns/iana/media-types/text/markdown> ;
     dct:created "2023-12-08T00:00:00+00:00"^^xsd:dateTime ;
-    dct:description [ dct:format "text/markdown" ;
-            rdfs:isDefinedBy "https://ogcincubator.github.io/bblocks-records-prov-dq/build/generateddocs/markdown/bbr/template/records-prov/index.md" ],
+    dct:description [ dct:format "text/html" ;
+            rdfs:isDefinedBy <https://ogcincubator.github.io/bblocks-records-prov-dq/bblock/ogc.bbr.template.records-prov> ],
+        [ dct:format "text/markdown" ;
+            rdfs:isDefinedBy <https://ogcincubator.github.io/bblocks-records-prov-dq/build/generateddocs/markdown/bbr/template/records-prov/index.md> ],
         [ dct:format "application/json" ;
-            rdfs:isDefinedBy "https://ogcincubator.github.io/bblocks-records-prov-dq/build/generateddocs/json-full/bbr/template/records-prov/index.json" ],
-        [ dct:format "text/html" ;
-            rdfs:isDefinedBy "https://ogcincubator.github.io/bblocks-records-prov-dq/bblock/ogc.bbr.template.records-prov" ] ;
+            rdfs:isDefinedBy <https://ogcincubator.github.io/bblocks-records-prov-dq/build/generateddocs/json-full/bbr/template/records-prov/index.json> ] ;
     dct:hasVersion "0.1" ;
-    dct:modified "2023-12-09"^^xsd:date ;
+    dct:modified "2026-09-16"^^xsd:date ;
     dct:source <https://www.w3.org/TR/prov-o/> ;
     skos:inScheme <https://ogcincubator.github.io/bblocks-records-prov-dq/> ;
+    skos:prefLabel "Record with Provenance" ;
+    skos:topConceptOf <https://ogcincubator.github.io/bblocks-records-prov-dq/> ;
     dcat:keyword "item",
         "provenance",
         "stac" ;
-    bblocks:dependsOn <https://ogcincubator.github.io/ogc.api.records.v1.schemas.recordGeoJSON>,
-        <https://ogcincubator.github.io/ogc.ogc-utils.prov> ;
-    bblocks:hasJsonLdContext <https://ogcincubator.github.io/bblocks-records-prov-dq/build/annotated/bbr/template/records-prov/context.jsonld> ;
-    bblocks:hasSchema <https://ogcincubator.github.io/bblocks-records-prov-dq/build/annotated/bbr/template/records-prov/schema.json>,
-        <https://ogcincubator.github.io/bblocks-records-prov-dq/build/annotated/bbr/template/records-prov/schema.yaml> ;
+    prof:hasResource [ dct:conformsTo <https://json-schema.org/draft/2020-12/schema> ;
+            dct:format "application/json" ;
+            prof:hasArtifact <https://ogcincubator.github.io/bblocks-records-prov-dq/build/annotated/bbr/template/records-prov/schema.json> ;
+            prof:hasRole role:schema ],
+        [ dct:conformsTo shacl: ;
+            dct:format "text/turtle" ;
+            rdfs:seeAlso <bblocks://ogc.geo.features.feature> ;
+            prof:hasArtifact <https://opengeospatial.github.io/bblocks/registereditems/geo/features/feature/shapes.shacl> ;
+            prof:hasRole role:validation ],
+        [ dct:conformsTo shacl: ;
+            dct:format "text/turtle" ;
+            rdfs:seeAlso <bblocks://ogc.api.records.v1.schemas.linkTemplate> ;
+            prof:hasArtifact <https://ogcincubator.github.io/bblocks-ogcapi-records/_sources/v1/schemas/linkTemplate/rules.shacl> ;
+            prof:hasRole role:validation ],
+        [ dct:conformsTo <https://json-schema.org/draft/2020-12/schema> ;
+            dct:format "application/yaml" ;
+            prof:hasArtifact <https://ogcincubator.github.io/bblocks-records-prov-dq/build/annotated/bbr/template/records-prov/schema.yaml> ;
+            prof:hasRole role:schema ],
+        [ dct:conformsTo <https://www.w3.org/TR/json-ld11/> ;
+            dct:format "application/ld+json" ;
+            prof:hasArtifact <https://ogcincubator.github.io/bblocks-records-prov-dq/build/annotated/bbr/template/records-prov/context.jsonld> ;
+            prof:hasRole role:mapping ],
+        [ dct:conformsTo shacl: ;
+            dct:format "text/turtle" ;
+            rdfs:seeAlso <bblocks://ogc.model.cross-domain.prov> ;
+            prof:hasArtifact <https://ogcincubator.github.io/cross-domain-model/_sources/prov/shapes.shacl> ;
+            prof:hasRole role:validation ] ;
+    bblocks:dependsOn <bblocks://ogc.api.records.v1.schemas.recordGeoJSON>,
+        <bblocks://ogc.ogc-utils.prov> ;
     bblocks:scope <http://www.opengis.net/def/bblocks/scope/contrib> ;
-    bblocks:status <http://www.opengis.net/def/status/under-development> .
+    bblocks:status <http://www.opengis.net/def/status/under-development> ;
+    bblocks:validationPassed true .
 
-<https://ogcincubator.github.io/bblocks-records-prov-dq/> a skos:ConceptScheme,
-        dcat:Catalog ;
-    rdfs:label "Building Blocks - My OGC Building Blocks repository" ;
-    dct:abstract """This is an example text for the abstract. It should be short and to the point.
-A "Tell me more" link will appear if there is an additional description with a longer explanation.
-""" ;
-    dct:description """The description can be longer. Both **the abstract** *and the description* support Markdown,
-including [links](https://google.es).
-""" ;
-    skos:prefLabel "Building Blocks - My OGC Building Blocks repository" ;
-    bblocks:hasValidationReport <https://ogcincubator.github.io/bblocks-records-prov-dq/build/tests/report.html> ;
-    bblocks:imports <https://ogcincubator.github.io/bblock-prov-schema/build/register.json>,
-        <https://ogcincubator.github.io/bblocks-ogcapi-records/build/register.json>,
-        <https://opengeospatial.github.io/bblocks/register.json> .
+<https://ogcincubator.github.io/bblocks-records-prov-dq/build/bblocks.ttl> a prov:Entity ;
+    dct:format "text/turtle" ;
+    prov:wasAttributedTo _:Ncdbf20abc1f24a18976db47b7e024fec ;
+    prov:wasGeneratedBy [ a prov:Activity ;
+            prov:endedAtTime "2026-09-16T22:20:36.024525"^^xsd:dateTime ;
+            prov:startedAtTime "2026-09-16T22:20:35.911264"^^xsd:dateTime ;
+            prov:used [ a prov:Entity ;
+                    dct:format "application/yaml" ;
+                    rdfs:seeAlso <file:///src/ogc/bblocks/register-context.yaml> ],
+                [ a prov:Entity ;
+                    dct:format "application/json" ;
+                    dct:hasVersion "git:5c2f94f929bcf66efc9ac5b9b5cbb5e0748f8b9c" ;
+                    rdfs:seeAlso <https://ogcincubator.github.io/bblocks-records-prov-dq/build/register.json> ] ;
+            prov:wasAssociatedWith _:Ncdbf20abc1f24a18976db47b7e024fec ] .
 
 <https://www.w3.org/TR/prov-o/> rdfs:label "PROV-O Specification" .
 
-[] a prov:Activity ;
-    prov:endedAtTime "2024-11-18T02:18:06.601406"^^xsd:dateTime ;
-    prov:startedAtTime "2024-11-18T02:18:06.540385"^^xsd:dateTime ;
-    prov:used [ a prov:Entity ;
-            dct:format "application/yaml" ;
-            rdfs:seeAlso <file:///src/ogc/bblocks/register-context.yaml> ],
-        [ a prov:Entity ;
-            dct:format "application/json" ;
-            dct:hasVersion "git:76d6512fc2b51109ce5e6a445dfda95b0fb8a538" ;
-            rdfs:seeAlso <https://ogcincubator.github.io/bblocks-records-prov-dq/build/register.json> ] ;
-    prov:wasAssociatedWith [ a prov:Agent,
-                schema:SoftwareApplication ;
-            rdfs:label "OGC-NA tools" ;
-            dct:hasVersion "0.3.55" ;
-            rdfs:seeAlso <https://github.com/opengeospatial/ogc-na-tools> ] .
+<https://ogcincubator.github.io/bblocks-records-prov-dq/> a skos:ConceptScheme,
+        dcat:Catalog,
+        bblocks:BBlocksRegister ;
+    rdfs:label "Building Blocks - My OGC Building Blocks repository" ;
+    dct:abstract """This is an example text for the abstract. It should be short and to the point.
+A "Tell me more" link will appear if there is an additional description with a longer explanation.
+"""^^<https://www.w3.org/ns/iana/media-types/text/markdown> ;
+    dct:description """The description can be longer. Both **the abstract** *and the description* support Markdown,
+including [links](https://google.es).
+"""^^<https://www.w3.org/ns/iana/media-types/text/markdown> ;
+    dct:modified "2026-09-16T22:20:31.234260"^^xsd:dateTime ;
+    owl:imports <https://ogcincubator.github.io/bblock-prov-schema/build/register.json>,
+        <https://ogcincubator.github.io/bblocks-ogcapi-records/build/register.json>,
+        <https://opengeospatial.github.io/bblocks/register.json> ;
+    skos:hasTopConcept <bblocks://ogc.bbr.template.records-prov> ;
+    skos:prefLabel "Building Blocks - My OGC Building Blocks repository" ;
+    prof:hasResource [ rdfs:label "This Building Blocks Register in RDF Turtle format" ;
+            dct:type "text/turtle" ;
+            ns2:relation <http://www.iana.org/assignments/relation/self> ;
+            ns1:hasTarget <https://ogcincubator.github.io/bblocks-records-prov-dq/build/bblocks.ttl> ],
+        [ rdfs:label "This Building Blocks Register in JSON format" ;
+            dct:type "application/json" ;
+            ns2:relation <http://www.iana.org/assignments/relation/self> ;
+            ns1:hasTarget <https://ogcincubator.github.io/bblocks-records-prov-dq/build/register.json> ],
+        [ rdfs:label "This Building Blocks Register in JSON-LD format" ;
+            dct:type "application/ld+json" ;
+            ns2:relation <http://www.iana.org/assignments/relation/self> ;
+            ns1:hasTarget <https://ogcincubator.github.io/bblocks-records-prov-dq/build/bblocks.jsonld> ] ;
+    foaf:homepage <https://ogcincubator.github.io/bblocks-records-prov-dq/> ;
+    bblocks:hasValidationReport <https://ogcincubator.github.io/bblocks-records-prov-dq/build/tests/report.html> .
+
+_:Ncdbf20abc1f24a18976db47b7e024fec a prov:Agent,
+        schema:SoftwareApplication ;
+    rdfs:label "OGC-NA tools" ;
+    dct:hasVersion "0.5.34" ;
+    rdfs:seeAlso <https://github.com/opengeospatial/ogc-na-tools> .
 

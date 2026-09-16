@@ -2,12 +2,12 @@
   "name": "My OGC Building Blocks repository",
   "abstract": "This is an example text for the abstract. It should be short and to the point.\nA \"Tell me more\" link will appear if there is an additional description with a longer explanation.\n",
   "description": "The description can be longer. Both **the abstract** *and the description* support Markdown,\nincluding [links](https://google.es).\n",
-  "modified": "2024-11-18T02:18:04.783643",
+  "modified": "2026-09-16T22:20:31.234260",
   "tooling": {
     "bblocks-postprocess": {
-      "commitId": "\"39d32ff771f87d20ecb44bfa3d868d5942b51074",
-      "shortCommitId": "\"39d32f",
-      "date": "2024-11-14T12:03:04+00:00\""
+      "commitId": "\"e9e9cb5c905d4e569b44b4816a663ec450322f6f",
+      "shortCommitId": "\"e9e9cb",
+      "date": "2026-09-14T10:12:51+00:00\""
     }
   },
   "gitRepository": "https://github.com/ogcincubator/bblocks-records-prov-dq",
@@ -15,6 +15,7 @@
   "baseURL": "https://ogcincubator.github.io/bblocks-records-prov-dq/",
   "viewerURL": "https://ogcincubator.github.io/bblocks-records-prov-dq/",
   "validationReport": "https://ogcincubator.github.io/bblocks-records-prov-dq/build/tests/report.html",
+  "validationReportJson": "https://ogcincubator.github.io/bblocks-records-prov-dq/build/tests/report.json",
   "imports": [
     "https://opengeospatial.github.io/bblocks/register.json",
     "https://ogcincubator.github.io/bblocks-ogcapi-records/build/register.json",
@@ -32,7 +33,7 @@
       "itemClass": "schema",
       "register": "ogcincubator",
       "version": "0.1",
-      "dateOfLastChange": "2023-12-09",
+      "dateOfLastChange": "2026-09-16",
       "sources": [
         {
           "title": "PROV-O Specification",
@@ -45,10 +46,20 @@
         "item",
         "provenance"
       ],
-      "shaclRules": {},
+      "shaclShapes": {
+        "ogc.model.cross-domain.prov": [
+          "https://ogcincubator.github.io/cross-domain-model/_sources/prov/shapes.shacl"
+        ],
+        "ogc.geo.features.feature": [
+          "https://opengeospatial.github.io/bblocks/registereditems/geo/features/feature/shapes.shacl"
+        ],
+        "ogc.api.records.v1.schemas.linkTemplate": [
+          "https://ogcincubator.github.io/bblocks-ogcapi-records/_sources/v1/schemas/linkTemplate/rules.shacl"
+        ]
+      },
       "dependsOn": [
-        "ogc.ogc-utils.prov",
-        "ogc.api.records.v1.schemas.recordGeoJSON"
+        "bblocks://ogc.ogc-utils.prov",
+        "bblocks://ogc.api.records.v1.schemas.recordGeoJSON"
       ],
       "schema": {
         "application/yaml": "https://ogcincubator.github.io/bblocks-records-prov-dq/build/annotated/bbr/template/records-prov/schema.yaml",
@@ -56,6 +67,7 @@
       },
       "sourceSchema": "https://ogcincubator.github.io/bblocks-records-prov-dq/_sources/records-prov/schema.yaml",
       "ldContext": "https://ogcincubator.github.io/bblocks-records-prov-dq/build/annotated/bbr/template/records-prov/context.jsonld",
+      "resolvedSchemaProperties": "https://ogcincubator.github.io/bblocks-records-prov-dq/build/annotated/bbr/template/records-prov/resolvedProperties.json",
       "sourceFiles": "https://ogcincubator.github.io/bblocks-records-prov-dq/_sources/records-prov/",
       "validationPassed": true,
       "testOutputs": "https://github.com/ogcincubator/bblocks-records-prov-dq/blob/master/build/tests/bbr/template/records-prov/",
@@ -73,6 +85,27 @@
           "url": "https://ogcincubator.github.io/bblocks-records-prov-dq/bblock/ogc.bbr.template.records-prov"
         }
       }
+    }
+  ],
+  "remoteCacheDir": "https://ogcincubator.github.io/bblocks-records-prov-dq/build/annotated/_cache",
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://ogcincubator.github.io/bblocks-records-prov-dq/build/register.json",
+      "type": "application/json",
+      "title": "This Building Blocks Register in JSON format"
+    },
+    {
+      "rel": "self",
+      "href": "https://ogcincubator.github.io/bblocks-records-prov-dq/build/bblocks.ttl",
+      "type": "text/turtle",
+      "title": "This Building Blocks Register in RDF Turtle format"
+    },
+    {
+      "rel": "self",
+      "href": "https://ogcincubator.github.io/bblocks-records-prov-dq/build/bblocks.jsonld",
+      "type": "application/ld+json",
+      "title": "This Building Blocks Register in JSON-LD format"
     }
   ]
 }
